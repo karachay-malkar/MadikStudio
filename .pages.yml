@@ -1,0 +1,154 @@
+media:
+  - name: project_images
+    label: Фотографии проектов
+    input: public/images/projects
+    output: /images/projects
+    extensions: [jpg, jpeg, png, webp, avif]
+    categories: [image]
+    rename: safe
+
+content:
+  - name: projects
+    label: Проекты
+    type: collection
+    path: src/content/projects
+    format: yaml-frontmatter
+    filename:
+      template: "{primary}.md"
+      field: create
+    view:
+      fields: [title, category, year, published, featured]
+      primary: title
+      sort: [order, year, title]
+      search: [title, location, category]
+      default:
+        sort: order
+        order: asc
+    fields:
+      - name: title
+        label: Название проекта
+        type: string
+        required: true
+      - name: subtitle
+        label: Подзаголовок
+        type: string
+      - name: category
+        label: Категория
+        type: select
+        required: true
+        options:
+          values:
+            - name: Интерьер
+              label: Интерьер
+            - name: Экстерьер
+              label: Экстерьер
+      - name: year
+        label: Год
+        type: number
+        required: true
+      - name: location
+        label: Местоположение
+        type: string
+        required: true
+      - name: area
+        label: Площадь
+        type: string
+        description: "Например: 124 м²"
+      - name: excerpt
+        label: Краткое описание
+        type: text
+        required: true
+        options:
+          maxlength: 360
+      - name: cover
+        label: Обложка проекта
+        type: image
+        required: true
+        options:
+          media: project_images
+          extensions: [jpg, jpeg, png, webp, avif]
+      - name: gallery
+        label: Галерея
+        type: image
+        options:
+          media: project_images
+          multiple:
+            max: 40
+          unique: true
+          extensions: [jpg, jpeg, png, webp, avif]
+      - name: featured
+        label: Показывать на главной
+        type: boolean
+      - name: published
+        label: Опубликован
+        type: boolean
+      - name: order
+        label: Порядок показа
+        type: number
+        description: Чем меньше число, тем выше проект в списке.
+      - name: body
+        label: Полное описание
+        type: rich-text
+
+  - name: site
+    label: Тексты и контакты
+    type: file
+    path: src/data/site.json
+    format: json
+    operations:
+      delete: false
+    fields:
+      - name: studioName
+        label: Название студии
+        type: string
+        required: true
+      - name: heroTitle
+        label: Главный заголовок
+        type: string
+        required: true
+      - name: heroSubtitle
+        label: Текст под главным заголовком
+        type: text
+        required: true
+      - name: introTitle
+        label: Заголовок раздела «Подход»
+        type: string
+        required: true
+      - name: introText
+        label: Текст раздела «Подход»
+        type: text
+        required: true
+      - name: aboutTitle
+        label: Заголовок «О дизайнере»
+        type: string
+        required: true
+      - name: aboutText
+        label: Текст «О дизайнере»
+        type: text
+        required: true
+      - name: email
+        label: Email
+        type: string
+        required: true
+      - name: phone
+        label: Телефон
+        type: string
+        required: true
+      - name: location
+        label: Локация
+        type: string
+      - name: instagram
+        label: Instagram
+        type: string
+      - name: behance
+        label: Behance
+        type: string
+
+settings:
+  content:
+    merge: true
+  commit:
+    templates:
+      create: "content: добавить {primary}"
+      update: "content: обновить {primary}"
+      delete: "content: удалить {primary}"
