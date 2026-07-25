@@ -25,8 +25,8 @@ npm run build
 ## Управление контентом
 
 1. Открыть `app.pagescms.org`.
-2. Войти через GitHub.
-3. Подключить репозиторий `karachay-malkar/MadikStudio`.
+2. Войти через GitHub-аккаунт `MadikStudio`.
+3. Подключить репозиторий `MadikStudio/MadikStudio`.
 4. Открыть раздел «Проекты».
 5. Создать проект, заполнить поля и загрузить фотографии.
 
@@ -34,11 +34,11 @@ Pages CMS сохраняет изменения в GitHub. Workflow `.github/wor
 
 ## Публикация
 
-В GitHub открыть `Settings → Pages` и выбрать источником `GitHub Actions`.
+После переноса репозитория на аккаунт `MadikStudio` открыть в GitHub `Settings → Pages` и выбрать источником `GitHub Actions`.
 
-Стартовый адрес:
+Адрес сайта:
 
-`https://karachay-malkar.github.io/MadikStudio/`
+`https://madikstudio.github.io/MadikStudio/`
 
 ## Контент
 
